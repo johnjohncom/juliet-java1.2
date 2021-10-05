@@ -46,6 +46,11 @@ jobs:
           java-version: '8.0.181+13'
           distribution: 'adopt'
 
+    - name: Set up python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.1' 
+        architecture: 'x64'
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
@@ -68,8 +73,7 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
 
-    - run: 
-       gradle build
+    - run: python run_analysis_example_tool.py
     #   make release
 
     - name: Perform CodeQL Analysis
