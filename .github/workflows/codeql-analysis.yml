@@ -22,7 +22,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: windows-2016
+    runs-on: keon-win
     permissions:
       actions: read
       contents: read
@@ -40,7 +40,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up JDK 6
+    - name: Set up JDK 
       uses: actions/setup-java@v2
       with:
           java-version: '8.0.181+13'
