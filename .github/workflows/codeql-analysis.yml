@@ -17,6 +17,7 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ master ]
+  repository_dispatch: 
 
 
 jobs:
@@ -43,7 +44,7 @@ jobs:
     - name: Set up JDK 
       uses: actions/setup-java@v2
       with:
-          java-version: '8.0.181+13'
+          java-version: '11'
           distribution: 'adopt'
 
     - name: Set up python
