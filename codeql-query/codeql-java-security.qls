@@ -1,0 +1,6 @@
+- description: "CodeQL Java security suite"
+
+
+- qlpack: codeql/java-queries 
+- include:
+    tags contain: security
