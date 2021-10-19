@@ -1,0 +1,51 @@
+name: "CodeQL"
+
+on:
+  
+  workflow_dispatch: 
+
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: keon-win
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'java'  ]
+        # CodeQL supports [ 'java' ]
+        # Learn more:
+        # https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#changing-the-languages-that-are-analyzed
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 
+      uses: actions/setup-java@v2
+      with:
+          java-version: '11'
+          distribution: 'adopt'
+
+    - name: Set up python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.1' 
+        architecture: 'x64'
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      with:
+        languages: ${{ matrix.language }}
+        config-file: ./codeql-query/codeql-config.yml
+       
+    - run: python run_analysis_example_tool.py
+    #   make release
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
